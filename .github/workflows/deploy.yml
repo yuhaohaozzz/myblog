@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: docs/.vuepress/dist
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
