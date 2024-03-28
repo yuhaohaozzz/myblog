@@ -35,9 +35,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - run: |
           npm install
           yarn build 
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
@@ -47,4 +56,15 @@ jobs:
         with:
           folder: docs/.vuepress/dist
           branch: main
-      
+  # 部署工作
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
