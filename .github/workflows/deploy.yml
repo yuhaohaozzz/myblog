@@ -48,23 +48,23 @@ jobs:
         with:
           path: docs/.vuepress/dist
 
-      #- name: Deploy 🚀
-      #  uses: JamesIves/github-pages-deploy-action@v4
-      #  env: # 设置环境变量
-      #    ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # toKen私密变量
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    folder: docs/.vuepress/dist
-      #    branch: main
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        env: # 设置环境变量
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # toKen私密变量
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          folder: docs/.vuepress/dist
+          branch: gh-pages
   # 部署工作
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-    name: Deploy
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  #deploy:
+  #  environment:
+  #    name: github-pages
+  #    url: ${{ steps.deployment.outputs.page_url }}
+  #  needs: build
+  #  runs-on: ubuntu-latest
+  #  name: Deploy
+  #  steps:
+  #    - name: Deploy to GitHub Pages
+  #      id: deployment
+  #      uses: actions/deploy-pages@v4
