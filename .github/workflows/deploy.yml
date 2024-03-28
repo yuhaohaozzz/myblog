@@ -41,21 +41,21 @@ jobs:
 
       - run: |
           npm install
-          yarn build 
+          yarn build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vuepress/dist
-      
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        env: # 设置环境变量
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # toKen私密变量
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        with:
-          folder: docs/.vuepress/dist
-          branch: main
+
+      #- name: Deploy 🚀
+      #  uses: JamesIves/github-pages-deploy-action@v4
+      #  env: # 设置环境变量
+      #    ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # toKen私密变量
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  with:
+      #    folder: docs/.vuepress/dist
+      #    branch: main
   # 部署工作
   deploy:
     environment:
@@ -67,4 +67,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
